@@ -30,30 +30,31 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/fulviocoelho/SIR">
+    <!-- <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
+    <img src="images/logo.png" alt="Logo" height="200">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+<!-- <h3 align="center">SIR</h3> -->
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    SIR or Script Ideal Runner is a tool to help you run scripts to test your application to achive a ideal run!
+    <!-- <br /> -->
+    <!-- <a href="https://github.com/fulviocoelho/SIR"><strong>Explore the docs »</strong></a> -->
+    <!-- <br /> -->
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <!-- <a href="https://github.com/fulviocoelho/SIR">View Demo</a> -->
+    <!-- · -->
+    <a href="https://github.com/fulviocoelho/SIR/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/fulviocoelho/SIR/issues">Request Feature</a>
   </p>
 </div>
 
 
 
 <!-- TABLE OF CONTENTS -->
-<details>
+<!-- <details>
   <summary>Table of Contents</summary>
   <ol>
     <li>
@@ -76,7 +77,7 @@
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
-</details>
+</details> -->
 
 
 
@@ -85,16 +86,9 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+SIR is an easy to use tool that aims to help you get a perfect test run on your plataform, to achive this we use tests written in python to have flexble test cases with database and API validations, making SIR a relaible and flexible choice to a backend E2E test run.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
+Write your E2E tests with python and run all of them using SIR. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -102,16 +96,16 @@ Use the `BLANK_README.md` to get started.
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![Next][Next.js]][Next-url]
+* [![Python][Python.py]][Python-url]
+* [![Node][Node.js]][Node-url]
+<!-- * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
 * [![Vue][Vue.js]][Vue-url]
 * [![Angular][Angular.io]][Angular-url]
 * [![Svelte][Svelte.dev]][Svelte-url]
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![JQuery][JQuery.com]][JQuery-url] -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -120,45 +114,95 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/fulviocoelho/SIR.git
+   ```
+2. Install NPM packages
+   ```sh
+   yarn
+   ```
+3. Install husky package (NPM) - Only needed if you want to use Git
+   ```sh
+   yarn husky install
+   ```
+4. Install python packages (PIP)
+   ```sh
+   yarn dependencies
+   ```
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+To run SIR you will need to have installed Python and NodeJs with yarn installed (NPM Package). Here is an example of how to install those softwares:
 * npm
   ```sh
-  npm install npm@latest -g
+  yum install npm nodejs
+  ```
+* yarn
+  ```sh
+  npm install yarn -g
+  ```
+* python
+  ```sh
+  yum install python3
   ```
 
-### Installation
+<!-- ### SIR Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+<!-- 1. Get a free API Key at [https://example.com](https://example.com) -->
+<!-- 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/fulviocoelho/SIR.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
-   npm install
+   yarn
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Install husky package (NPM) - Only needed if you want to use Git
+   ```sh
+   yarn husky install
+   ```
+4. Install python packages (PIP)
+   ```sh
+   yarn dependencies
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+To use SIR run the command `yarn test` and all tests on the tests folder will be executed. The execution command can receive parameters.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+### Parameters
+| parameter | values | description |
+| --- | --- | --- |
+| output | json / csv | save the test's outcome in a file in the designated format |
+| profile | - | execute the tests on the test profile folder, all the profiles are defined in the configuration file |
+| verbose | true / false | if the log tool is used the verbose enables the logs on the tests |
+
+command example: `yarn test --outcome csv --profile project_a --verbose true`
+
+### Configuration File
+
+The configuration file should be written in json or yaml/yml and should be named config.
+**config.json**
+```
+{
+  "profiles": {
+    "default": "tests"
+  }
+}
+```
+
+**config.yaml**
+```
+profiles:
+  dafault: "tests"
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -167,22 +211,30 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [X] Tests Profiles
+- [X] Verbose Flag
+- [X] Report Output
+  - [X] JSON
+  - [X] CSV
+- [X] Tools
+  - [X] Assertion Tool
+  - [X] Logging Tool
+  - [X] Local Storage Tool
+- [ ] Custom Styles
+- [ ] Run Tests Automation
+  - [ ] Before All
+  - [ ] Before Each
+  - [ ] After All
+  - [ ] After Each
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/fulviocoelho/SIR/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+<!-- ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -195,7 +247,7 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 
@@ -211,49 +263,46 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Fulvio Coelho - contato@fulviocoelho.dev
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/fulviocoelho/SIR](https://github.com/fulviocoelho/SIR)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+<!-- ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+* []()
+* []()
+* []()
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/fulviocoelho/SIR.svg?style=for-the-badge
+[contributors-url]: https://github.com/fulviocoelho/SIR/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/fulviocoelho/SIR.svg?style=for-the-badge
+[forks-url]: https://github.com/fulviocoelho/SIR/network/members
+[stars-shield]: https://img.shields.io/github/stars/fulviocoelho/SIR.svg?style=for-the-badge
+[stars-url]: https://github.com/fulviocoelho/SIR/stargazers
+[issues-shield]: https://img.shields.io/github/issues/fulviocoelho/SIR.svg?style=for-the-badge
+[issues-url]: https://github.com/fulviocoelho/SIR/issues
+[license-shield]: https://img.shields.io/github/license/fulviocoelho/SIR.svg?style=for-the-badge
+[license-url]: https://github.com/fulviocoelho/SIR/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://linkedin.com/in/fulvio-coelho
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Python.py]: https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white
+[Node.js]: https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
 [Next-url]: https://nextjs.org/
+[Python-url]: https://www.python.org/
+[Node-url]: https://nodejs.org/en/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
