@@ -114,7 +114,13 @@ The configuration file should be written in json or yaml/yml and should be named
       "emoji": ":cross_mark:",
       "color": "grey"
     },
-    "duration": [
+    "test_duration": [
+      {
+        "threshold": 0,
+        "color": "grey"
+      }
+    ],
+    "total_duration": [
       {
         "threshold": 0,
         "color": "grey"
@@ -138,7 +144,10 @@ styles:
   fail:
     emoji: ":cross_mark:"
     color: "grey"
-  duration:
+  test_duration:
+    - threshold: 0
+      color: "grey"
+  total_duration:
     - threshold: 0
       color: "grey"
 ```
@@ -173,7 +182,7 @@ In our tool we use a set of libraries to help us get the style we want when prin
   - [X] Before Each
   - [X] After All
   - [X] After Each
-- [ ] Total Test Duration
+- [X] Total Test Duration
 
 See the [open issues](https://github.com/fulviocoelho/SIR/issues) for a full list of proposed features (and known issues).
 
