@@ -173,6 +173,7 @@ In our tool we use a set of libraries to help us get the style we want when prin
   - [ ] Before Each
   - [ ] After All
   - [ ] After Each
+- [ ] Total Test Duration
 
 See the [open issues](https://github.com/fulviocoelho/SIR/issues) for a full list of proposed features (and known issues).
 
