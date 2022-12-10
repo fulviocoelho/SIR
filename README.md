@@ -1,23 +1,5 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -25,26 +7,15 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
-<!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/fulviocoelho/SIR">
-    <!-- <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
-    <img src="images/logo.png" alt="Logo" height="200">
+    <img src="images/logo_sir_black.png" alt="Logo" height="200">
   </a>
-
-<!-- <h3 align="center">SIR</h3> -->
 
   <p align="center">
     SIR or Script Ideal Runner is a tool to help you run scripts to test your application to achive a ideal run!
-    <!-- <br /> -->
-    <!-- <a href="https://github.com/fulviocoelho/SIR"><strong>Explore the docs »</strong></a> -->
-    <!-- <br /> -->
     <br />
-    <!-- <a href="https://github.com/fulviocoelho/SIR">View Demo</a> -->
-    <!-- · -->
     <a href="https://github.com/fulviocoelho/SIR/issues">Report Bug</a>
     ·
     <a href="https://github.com/fulviocoelho/SIR/issues">Request Feature</a>
@@ -52,36 +23,6 @@
 </div>
 
 
-
-<!-- TABLE OF CONTENTS -->
-<!-- <details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details> -->
-
-
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
@@ -98,20 +39,9 @@ Write your E2E tests with python and run all of them using SIR.
 
 * [![Python][Python.py]][Python-url]
 * [![Node][Node.js]][Node-url]
-<!-- * [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url] -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- GETTING STARTED -->
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
@@ -148,31 +78,6 @@ To run SIR you will need to have installed Python and NodeJs with yarn installed
   yum install python3
   ```
 
-<!-- ### SIR Installation
-
-<!-- 1. Get a free API Key at [https://example.com](https://example.com) -->
-<!-- 1. Clone the repo
-   ```sh
-   git clone https://github.com/fulviocoelho/SIR.git
-   ```
-2. Install NPM packages
-   ```sh
-   yarn
-   ```
-3. Install husky package (NPM) - Only needed if you want to use Git
-   ```sh
-   yarn husky install
-   ```
-4. Install python packages (PIP)
-   ```sh
-   yarn dependencies
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
-
-
-
-<!-- USAGE EXAMPLES -->
 ## Usage
 
 To use SIR run the command `yarn test` and all tests on the tests folder will be executed. The execution command can receive parameters.
@@ -183,6 +88,7 @@ To use SIR run the command `yarn test` and all tests on the tests folder will be
 | output | json / csv | save the test's outcome in a file in the designated format |
 | profile | - | execute the tests on the test profile folder, all the profiles are defined in the configuration file |
 | verbose | true / false | if the log tool is used the verbose enables the logs on the tests |
+| stop-on-fail | true / false | if the flag is true SIR will stop all tests when a test fails |
 
 command example: `yarn test --outcome csv --profile project_a --verbose true`
 
@@ -194,6 +100,26 @@ The configuration file should be written in json or yaml/yml and should be named
 {
   "profiles": {
     "default": "tests"
+  },
+  "styles": {
+    "folder": {
+      "emoji": "",
+      "color": "white"
+    },
+    "pass": {
+      "emoji": ":check_mark_button:",
+      "color": "grey"
+    },
+    "fail": {
+      "emoji": ":cross_mark:",
+      "color": "grey"
+    },
+    "duration": [
+      {
+        "threshold": 0,
+        "color": "grey"
+      }
+    ]
   }
 }
 ```
@@ -202,7 +128,23 @@ The configuration file should be written in json or yaml/yml and should be named
 ```
 profiles:
   dafault: "tests"
+styles:
+  folder:
+    emoji: ""
+    color: "white"
+  pass:
+    emoji: ":check_mark_button:"
+    color: "grey"
+  fail:
+    emoji: ":cross_mark:"
+    color: "grey"
+  duration:
+    - threshold: 0
+      color: "grey"
 ```
+
+#### Custom Styes
+In our tool we use a set of libraries to help us get the style we want when printing the result on the terminal. To achive this we use [termcolor](https://pypi.org/project/termcolor/) and [emoji](https://pypi.org/project/emoji/). So if you want to customize your tests output style on terminal you can check the [colors](https://pypi.org/project/termcolor/) and [emojis](https://carpedm20.github.io/emoji/) from those libraries.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -220,7 +162,12 @@ profiles:
   - [X] Assertion Tool
   - [X] Logging Tool
   - [X] Local Storage Tool
-- [ ] Custom Styles
+- [X] Custom Styles
+- [X] Stop Testing on Test Fail
+- [X] Test Duration
+  - [X] Basic View
+  - [X] Color Threshold
+  - [X] Report Info
 - [ ] Run Tests Automation
   - [ ] Before All
   - [ ] Before Each
@@ -231,36 +178,12 @@ See the [open issues](https://github.com/fulviocoelho/SIR/issues) for a full lis
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- CONTRIBUTING -->
-<!-- ## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
-
-
-
-<!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- CONTACT -->
 ## Contact
 
 Fulvio Coelho - contato@fulviocoelho.dev
@@ -269,21 +192,6 @@ Project Link: [https://github.com/fulviocoelho/SIR](https://github.com/fulviocoe
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- ACKNOWLEDGMENTS -->
-<!-- ## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/fulviocoelho/SIR.svg?style=for-the-badge
 [contributors-url]: https://github.com/fulviocoelho/SIR/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/fulviocoelho/SIR.svg?style=for-the-badge
