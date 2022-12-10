@@ -80,7 +80,7 @@ To run SIR you will need to have installed Python and NodeJs with yarn installed
 
 ## Usage
 
-To use SIR run the command `yarn test` and all tests on the tests folder will be executed. The execution command can receive parameters.
+To use SIR run the command `yarn test` and all tests on the tests folder will be executed. The execution command can receive parameters. To use the set up feature you must create inside the your test folder a folder named `SetUp`, inside it you should put the scripts `BeforeAll.py`, `AfterAll.py`, `BeforeEach.py` and `AfterEach.py`. The set up scripts will run acording to it's name (e.g. a after all script will run after all tests are done and a before each will run before each test run).
 
 ### Parameters
 | parameter | values | description |
@@ -168,11 +168,11 @@ In our tool we use a set of libraries to help us get the style we want when prin
   - [X] Basic View
   - [X] Color Threshold
   - [X] Report Info
-- [ ] Run Tests Automation
-  - [ ] Before All
-  - [ ] Before Each
-  - [ ] After All
-  - [ ] After Each
+- [X] Run Tests Automation
+  - [X] Before All
+  - [X] Before Each
+  - [X] After All
+  - [X] After Each
 - [ ] Total Test Duration
 
 See the [open issues](https://github.com/fulviocoelho/SIR/issues) for a full list of proposed features (and known issues).

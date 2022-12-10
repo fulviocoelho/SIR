@@ -27,6 +27,9 @@ def find_parameter_value(parameter):
 def run_tests(STYLES, TESTS = []):
     tests = [x.split('.')[0] for x in os.listdir() if '.py' in x]
     for test in tests:
+
+        execute_before_each()
+
         start = get_now()
         test_result = os.system(f'{os.environ["PYTHON"]} {test}.py')
         end = get_now()
@@ -42,8 +45,10 @@ def run_tests(STYLES, TESTS = []):
             if 'STOP_ON_FAIL' in os.environ and eval(os.environ['STOP_ON_FAIL']) == True:
                 exit()
 
+        execute_after_each()
+
 def run_tests_in_folders(BASE_PATH, STYLES, FOLDERS = []):
-    tests_folders = [x for x in os.listdir() if '.' not in x]
+    tests_folders = [x for x in os.listdir() if '.' not in x and x != 'SetUp']
     for folder in tests_folders:
         os.chdir(f'{BASE_PATH}/{folder}')
         FOLDERS.append({ "folder": folder, "tests": [] })
@@ -79,6 +84,27 @@ def validate_output_format(OUTPUT_FORMAT):
 
 def get_now():
     return int(time.time() * 1000)
+
+def execute_before_all():
+    before_all_file = f'{os.environ["BASE_PATH"]}/SetUp/BeforeAll.py'
+    if os.path.isfile(before_all_file):
+        os.system(f'{os.environ["PYTHON"]} {before_all_file}')
+
+def execute_after_all():
+    after_all_file = f'{os.environ["BASE_PATH"]}/SetUp/AfterAll.py'
+    if os.path.isfile(after_all_file):
+        os.system(f'{os.environ["PYTHON"]} {after_all_file}')
+
+def execute_before_each():
+    before_each_file = f'{os.environ["BASE_PATH"]}/SetUp/BeforeEach.py'
+    if os.path.isfile(before_each_file):
+        os.system(f'{os.environ["PYTHON"]} {before_each_file}')
+
+def execute_after_each():
+    after_each_file = f'{os.environ["BASE_PATH"]}/SetUp/AfterEach.py'
+    if os.path.isfile(after_each_file):
+        os.system(f'{os.environ["PYTHON"]} {after_each_file}')
+
 
 def main():    
     OUTPUT_FORMAT = None
@@ -151,13 +177,18 @@ def main():
     FOLDERS = []
     
     os.environ['APP_PATH'] = APP_PATH
+    os.environ['BASE_PATH'] = BASE_PATH
 
     validate_output_format(OUTPUT_FORMAT)
 
     os.chdir(BASE_PATH)
 
+    execute_before_all()
+
     run_tests(STYLES, TESTS)
     run_tests_in_folders(BASE_PATH, STYLES, FOLDERS)
+
+    execute_after_all()
 
     if len(TESTS) > 0:
         FOLDERS.append({ "folder": "root", "tests": TESTS })
