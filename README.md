@@ -61,6 +61,16 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    yarn dependencies
    ```
+   
+#### Python Version
+SIR uses the command `python` in its code, so if you have another way to call python (e.g. `python3`) you can change the way SIR invokes python by changing the `package.json` file scripts to use your python and pip:
+
+```
+"scripts": {
+    "test": "cross-env PYTHON=python python ./run.py",
+    "dependencies": "pip install requests termcolor emoji"
+  }
+```
 
 ### Prerequisites
 
@@ -154,6 +164,27 @@ styles:
 
 #### Custom Styes
 In our tool we use a set of libraries to help us get the style we want when printing the result on the terminal. To achive this we use [termcolor](https://pypi.org/project/termcolor/) and [emoji](https://pypi.org/project/emoji/). So if you want to customize your tests output style on terminal you can check the [colors](https://pypi.org/project/termcolor/) and [emojis](https://carpedm20.github.io/emoji/) from those libraries.
+
+#### Importing Tools
+To import tools on your tests you can use the following code:
+```
+import os
+import sys
+
+sys.path.append(os.environ['APP_PATH'])
+
+from tools import log, storage
+```
+
+#### Environment Variables
+When SIR is initialized its set it self the following environment variables:
+| parameter | description |
+| --- | --- |
+| PYTHON | the python version that is used to run the tests |
+| APP_PATH | the path that SIR is in you machine |
+| BASE_PATH | the path to the tests executed in SIR run |
+| VERBOSE | flag to tell if logs should be printed |
+| STOP_ON_FAIL | flag to tell if SIR should stop on the first error found in tests |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
