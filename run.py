@@ -26,6 +26,8 @@ def find_parameter_value(parameter):
 
 def run_tests(STYLES, TESTS = []):
     tests = [x.split('.')[0] for x in os.listdir() if '.py' in x]
+    tests.sort()
+
     for test in tests:
 
         execute_before_each()
@@ -49,6 +51,7 @@ def run_tests(STYLES, TESTS = []):
 
 def run_tests_in_folders(BASE_PATH, STYLES, FOLDERS = []):
     tests_folders = [x for x in os.listdir() if '.' not in x and x != 'SetUp']
+    tests_folders.sort()
     for folder in tests_folders:
         os.chdir(f'{BASE_PATH}/{folder}')
         FOLDERS.append({ "folder": folder, "tests": [] })

@@ -7,7 +7,7 @@
   },
   "scripts": {
     "test": "cross-env PYTHON=python python ./run.py",
-    "dependencies": "pip install requests termcolor emoji"
+    "dependencies": "pip install requests termcolor emoji pyyaml"
   },
   "config": {
     "commitizen": {
