@@ -193,6 +193,7 @@ When SIR is initialized its set it self the following environment variables:
 <!-- ROADMAP -->
 ## Roadmap
 
+**~V1.2.0**
 - [X] Tests Profiles
 - [X] Verbose Flag
 - [X] Report Output
@@ -214,6 +215,15 @@ When SIR is initialized its set it self the following environment variables:
   - [X] After All
   - [X] After Each
 - [X] Total Test Duration
+
+**V2.0.0**
+- [ ] Remove true/false for boolean tags
+  - [ ] Verbose
+  - [ ] Stop on fail
+- [ ] Add flag `--only` to run only scripts marked as `.only` on name
+- [ ] Add flag `--but` to run all but scripts marked as `.but` on name
+- [ ] Fix SIR to create error file and fail to run
+- [ ] Add flag `--log-output` to create log file for logs on tests
 
 See the [open issues](https://github.com/fulviocoelho/SIR/issues) for a full list of proposed features (and known issues).
 
