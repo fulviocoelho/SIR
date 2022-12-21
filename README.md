@@ -90,17 +90,18 @@ To run SIR you will need to have installed Python and NodeJs with yarn installed
 
 ## Usage
 
-To use SIR run the command `yarn test` and all tests on the tests folder will be executed. The execution command can receive parameters. To use the set up feature you must create inside the your test folder a folder named `SetUp`, inside it you should put the scripts `BeforeAll.py`, `AfterAll.py`, `BeforeEach.py` and `AfterEach.py`. The set up scripts will run acording to it's name (e.g. a after all script will run after all tests are done and a before each will run before each test run).
+To use SIR run the command `yarn sir` and all tests on the tests folder will be executed. The execution command can receive parameters. To use the set up feature you must create inside the your test folder a folder named `SetUp`, inside it you should put the scripts `BeforeAll.py`, `AfterAll.py`, `BeforeEach.py` and `AfterEach.py`. The set up scripts will run acording to it's name (e.g. a after all script will run after all tests are done and a before each will run before each test run).
 
 ### Parameters
 | parameter | values | description |
 | --- | --- | --- |
 | output | json / csv | save the test's outcome in a file in the designated format |
 | profile | - | execute the tests on the test profile folder, all the profiles are defined in the configuration file |
-| verbose | true / false | if the log tool is used the verbose enables the logs on the tests |
-| stop-on-fail | true / false | if the flag is true SIR will stop all tests when a test fails |
+| verbose | - | if the log tool is used the verbose enables the logs on the tests |
+| stop-on-fail | - | if used SIR will stop all tests when a test fails |
+| log-output | - | if the log tool is used the log-output saves all logs implemented in a local file inside the logs folder |
 
-command example: `yarn test --outcome csv --profile project_a --verbose true`
+command example: `yarn sir --outcome csv --profile project_a --verbose true`
 
 ### Configuration File
 
@@ -173,7 +174,7 @@ import sys
 
 sys.path.append(os.environ['APP_PATH'])
 
-from tools import log, storage
+from tools import log, storage, must
 ```
 
 #### Environment Variables
@@ -185,6 +186,7 @@ When SIR is initialized its set it self the following environment variables:
 | BASE_PATH | the path to the tests executed in SIR run |
 | VERBOSE | flag to tell if logs should be printed |
 | STOP_ON_FAIL | flag to tell if SIR should stop on the first error found in tests |
+| EXECUTION_PROFILE | the profile of the current SIR execution |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -217,13 +219,15 @@ When SIR is initialized its set it self the following environment variables:
 - [X] Total Test Duration
 
 **V2.0.0**
-- [ ] Remove true/false for boolean tags
-  - [ ] Verbose
-  - [ ] Stop on fail
+- [X] Remove true/false for boolean tags
+  - [X] Verbose
+  - [X] Stop on fail
 - [ ] Add flag `--only` to run only scripts marked as `.only` on name
 - [ ] Add flag `--but` to run all but scripts marked as `.but` on name
-- [ ] Fix SIR to create error file and fail to run
-- [ ] Add flag `--log-output` to create log file for logs on tests
+- [X] Fix SIR to create error file and fail to run
+- [X] Change examples to make it easier to understand SIR
+- [X] Change command from `yarn test` to `yarn sir`
+- [X] Add flag `--log-output` to create log file for logs on tests
 
 See the [open issues](https://github.com/fulviocoelho/SIR/issues) for a full list of proposed features (and known issues).
 
