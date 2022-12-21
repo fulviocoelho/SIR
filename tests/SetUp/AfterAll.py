@@ -5,4 +5,4 @@ sys.path.append(os.environ['APP_PATH'])
 
 from tools import log
 
-log('After all')
+log('Execute log action after all tests executions')

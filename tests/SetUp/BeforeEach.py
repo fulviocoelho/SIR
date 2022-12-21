@@ -5,4 +5,4 @@ sys.path.append(os.environ['APP_PATH'])
 
 from tools import log
 
-log('Before each')
+log('Execute log action before each test execution')

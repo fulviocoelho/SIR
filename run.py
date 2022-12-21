@@ -4,6 +4,7 @@ import yaml
 import json
 import time
 import emoji
+from datetime import datetime
 from termcolor import colored
 
 def load_configs():
@@ -112,22 +113,18 @@ def execute_after_each():
 def main():    
     OUTPUT_FORMAT = None
     PROFILE = None
-    VERBOSE = None
-    STOP_ON_FAIL = None
+    EXECUTION_PROFILE = 'default'
         
     if '--output' in sys.argv:
         OUTPUT_FORMAT = find_parameter_value('--output')
     if '--profile' in sys.argv:
         PROFILE = find_parameter_value('--profile')
     if '--verbose' in sys.argv:
-        VERBOSE = find_parameter_value('--verbose')
+         os.environ['VERBOSE'] = 'True'
     if '--stop-on-fail' in sys.argv:
-        STOP_ON_FAIL = find_parameter_value('--stop-on-fail')
-
-    if VERBOSE is not None and VERBOSE.lower() == 'true':
-        os.environ['VERBOSE'] = 'True'
-    if STOP_ON_FAIL is not None and STOP_ON_FAIL.lower() == 'true':
         os.environ['STOP_ON_FAIL'] = 'True'
+    if '--log-output' in sys.argv:
+        os.environ['LOG_OUTPUT'] = 'True'
 
     STYLES = {
         "FOLDER_STYLE": {
@@ -164,6 +161,7 @@ def main():
             if PROFILE is not None:
                 try:
                     BASE_TEST_FOLDER = f'/{CONFIG["profiles"][PROFILE]}'
+                    EXECUTION_PROFILE = PROFILE
                 except:
                     print('Profile not found')
                     exit()
@@ -189,6 +187,7 @@ def main():
     
     os.environ['APP_PATH'] = APP_PATH
     os.environ['BASE_PATH'] = BASE_PATH
+    os.environ['EXECUTION_PROFILE'] = EXECUTION_PROFILE
 
     validate_output_format(OUTPUT_FORMAT)
 
@@ -214,10 +213,21 @@ def main():
     total_duration_color = [x['color'] for x in STYLES["TOTAL_DURATION"] if x['threshold'] < total_test_duration]
 
     print(f'SIR Total Run Duration {colored(f"{total_test_duration} ms", total_duration_color[len(total_duration_color)-1])}')
-
     if len(TESTS) > 0:
         FOLDERS.append({ "folder": "root", "tests": TESTS })
 
     generate_report(APP_PATH, OUTPUT_FORMAT, PROFILE, FOLDERS)
 
-main()
+def error_log(e):
+    print()
+    print(colored('An error have occurred when executing SIR, is the error persists contact us on github (https://github.com/fulviocoelho/SIR)', 'red'))
+    print(colored('For more information on this error check the file error_log.txt', 'red'))
+    print()
+    with open(f'{os.environ["APP_PATH"]}/error_log.txt', 'a', encoding='utf8') as f:
+        f.write(f'[{datetime.now()}] {e}\n')
+
+
+try:
+    main()
+except Exception as e:
+    error_log(e)
