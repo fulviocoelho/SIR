@@ -4,6 +4,7 @@ import yaml
 import json
 import time
 import emoji
+from datetime import datetime
 from termcolor import colored
 
 def load_configs():
@@ -26,24 +27,32 @@ def find_parameter_value(parameter):
 
 def run_tests(STYLES, TESTS = []):
     tests = [x.split('.')[0] for x in os.listdir() if '.py' in x]
+    tests.sort()
+
     for test in tests:
+
+        execute_before_each()
+
         start = get_now()
         test_result = os.system(f'{os.environ["PYTHON"]} {test}.py')
         end = get_now()
         test_duration = end - start
-        duration_color = [x['color'] for x in STYLES["DURATION"] if x['threshold'] < test_duration]
+        duration_color = [x['color'] for x in STYLES["TEST_DURATION"] if x['threshold'] < test_duration]
 
         if test_result == 0:
             TESTS.append({ "test": test, "status": "PASS", "duration": test_duration })
-            print(emoji.emojize(f'  {STYLES["PASS_TEST_STYLE"]["emoji"]} {colored(f"{test}: PASS", STYLES["PASS_TEST_STYLE"]["color"])} {colored(f"({test_duration})", duration_color[len(duration_color)-1])}'))
+            print(emoji.emojize(f'  {STYLES["PASS_TEST_STYLE"]["emoji"]} {colored(f"{test}: PASS", STYLES["PASS_TEST_STYLE"]["color"])} {colored(f"({test_duration} ms)", duration_color[len(duration_color)-1])}'))
         else:
             TESTS.append({ "test": test, "status": "FAIL", "duration": test_duration })
-            print(emoji.emojize(f'  {STYLES["FAIL_TEST_STYLE"]["emoji"]} {colored(f"{test}: FAIL", STYLES["FAIL_TEST_STYLE"]["color"])} {colored(f"({test_duration})", duration_color[len(duration_color)-1])}'))
+            print(emoji.emojize(f'  {STYLES["FAIL_TEST_STYLE"]["emoji"]} {colored(f"{test}: FAIL", STYLES["FAIL_TEST_STYLE"]["color"])} {colored(f"({test_duration} ms)", duration_color[len(duration_color)-1])}'))
             if 'STOP_ON_FAIL' in os.environ and eval(os.environ['STOP_ON_FAIL']) == True:
                 exit()
 
+        execute_after_each()
+
 def run_tests_in_folders(BASE_PATH, STYLES, FOLDERS = []):
-    tests_folders = [x for x in os.listdir() if '.' not in x]
+    tests_folders = [x for x in os.listdir() if '.' not in x and x != 'SetUp']
+    tests_folders.sort()
     for folder in tests_folders:
         os.chdir(f'{BASE_PATH}/{folder}')
         FOLDERS.append({ "folder": folder, "tests": [] })
@@ -80,25 +89,42 @@ def validate_output_format(OUTPUT_FORMAT):
 def get_now():
     return int(time.time() * 1000)
 
+def execute_before_all():
+    before_all_file = f'{os.environ["BASE_PATH"]}/SetUp/BeforeAll.py'
+    if os.path.isfile(before_all_file):
+        os.system(f'{os.environ["PYTHON"]} {before_all_file}')
+
+def execute_after_all():
+    after_all_file = f'{os.environ["BASE_PATH"]}/SetUp/AfterAll.py'
+    if os.path.isfile(after_all_file):
+        os.system(f'{os.environ["PYTHON"]} {after_all_file}')
+
+def execute_before_each():
+    before_each_file = f'{os.environ["BASE_PATH"]}/SetUp/BeforeEach.py'
+    if os.path.isfile(before_each_file):
+        os.system(f'{os.environ["PYTHON"]} {before_each_file}')
+
+def execute_after_each():
+    after_each_file = f'{os.environ["BASE_PATH"]}/SetUp/AfterEach.py'
+    if os.path.isfile(after_each_file):
+        os.system(f'{os.environ["PYTHON"]} {after_each_file}')
+
+
 def main():    
     OUTPUT_FORMAT = None
     PROFILE = None
-    VERBOSE = None
-    STOP_ON_FAIL = None
+    EXECUTION_PROFILE = 'default'
         
     if '--output' in sys.argv:
         OUTPUT_FORMAT = find_parameter_value('--output')
     if '--profile' in sys.argv:
         PROFILE = find_parameter_value('--profile')
     if '--verbose' in sys.argv:
-        VERBOSE = find_parameter_value('--verbose')
+         os.environ['VERBOSE'] = 'True'
     if '--stop-on-fail' in sys.argv:
-        STOP_ON_FAIL = find_parameter_value('--stop-on-fail')
-
-    if VERBOSE is not None and VERBOSE.lower() == 'true':
-        os.environ['VERBOSE'] = 'True'
-    if STOP_ON_FAIL is not None and STOP_ON_FAIL.lower() == 'true':
         os.environ['STOP_ON_FAIL'] = 'True'
+    if '--log-output' in sys.argv:
+        os.environ['LOG_OUTPUT'] = 'True'
 
     STYLES = {
         "FOLDER_STYLE": {
@@ -113,10 +139,16 @@ def main():
             "emoji": ":cross_mark:",
             "color": "grey"
         },
-        "DURATION": [
+        "TEST_DURATION": [
             {
                 "threshold": 0,
                 "color": "grey"
+            }
+        ],
+        "TOTAL_DURATION": [
+            {
+                "threshold": 0,
+                "color": "white"
             }
         ],
     }
@@ -129,6 +161,7 @@ def main():
             if PROFILE is not None:
                 try:
                     BASE_TEST_FOLDER = f'/{CONFIG["profiles"][PROFILE]}'
+                    EXECUTION_PROFILE = PROFILE
                 except:
                     print('Profile not found')
                     exit()
@@ -141,8 +174,10 @@ def main():
                 STYLES['PASS_TEST_STYLE'] = CONFIG['styles']['pass']
             if 'fail' in CONFIG['styles']:
                 STYLES['FAIL_TEST_STYLE'] = CONFIG['styles']['fail']
-            if 'duration' in CONFIG['styles']:
-                STYLES['DURATION'] = CONFIG['styles']['duration']
+            if 'test_duration' in CONFIG['styles']:
+                STYLES['TEST_DURATION'] = CONFIG['styles']['test_duration']
+            if 'total_duration' in CONFIG['styles']:
+                STYLES['TOTAL_DURATION'] = CONFIG['styles']['total_duration']
 
     BASE_PATH = f'{os.getcwd()}/{BASE_TEST_FOLDER}'
     APP_PATH = f'{os.getcwd()}'
@@ -151,17 +186,48 @@ def main():
     FOLDERS = []
     
     os.environ['APP_PATH'] = APP_PATH
+    os.environ['BASE_PATH'] = BASE_PATH
+    os.environ['EXECUTION_PROFILE'] = EXECUTION_PROFILE
 
     validate_output_format(OUTPUT_FORMAT)
 
     os.chdir(BASE_PATH)
 
+    print(emoji.emojize('What a distinguished gentleman :wine_glass::moai:'))
+    print()
+
+    start_sir_run = get_now()
+
+    execute_before_all()
+
     run_tests(STYLES, TESTS)
     run_tests_in_folders(BASE_PATH, STYLES, FOLDERS)
 
+    execute_after_all()
+
+    end_sir_run = get_now()
+
+    print()
+
+    total_test_duration = end_sir_run - start_sir_run
+    total_duration_color = [x['color'] for x in STYLES["TOTAL_DURATION"] if x['threshold'] < total_test_duration]
+
+    print(f'SIR Total Run Duration {colored(f"{total_test_duration} ms", total_duration_color[len(total_duration_color)-1])}')
     if len(TESTS) > 0:
         FOLDERS.append({ "folder": "root", "tests": TESTS })
 
     generate_report(APP_PATH, OUTPUT_FORMAT, PROFILE, FOLDERS)
 
-main()
+def error_log(e):
+    print()
+    print(colored('An error have occurred when executing SIR, is the error persists contact us on github (https://github.com/fulviocoelho/SIR)', 'red'))
+    print(colored('For more information on this error check the file error_log.txt', 'red'))
+    print()
+    with open(f'{os.environ["APP_PATH"]}/error_log.txt', 'a', encoding='utf8') as f:
+        f.write(f'[{datetime.now()}] {e}\n')
+
+
+try:
+    main()
+except Exception as e:
+    error_log(e)

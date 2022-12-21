@@ -6,8 +6,8 @@
     "husky": "^8.0.2"
   },
   "scripts": {
-    "test": "cross-env PYTHON=python python ./run.py",
-    "dependencies": "pip install requests termcolor emoji"
+    "sir": "cross-env PYTHON=python python ./run.py",
+    "dependencies": "pip install requests termcolor emoji pyyaml"
   },
   "config": {
     "commitizen": {
